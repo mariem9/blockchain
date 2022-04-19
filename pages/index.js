@@ -38,8 +38,8 @@ const styles = {
   ItemTitle: 'flex-1 font-bold',
   moreOptions: 'cursor-pointer text-xl',
 }
-export default function Home() {
- /**  const [myCoins] = useState([...coins.slice(0, 15)])*/
+export default function Home({coins}) {
+  const [myCoins] = useState([...coins.slice(0, 15)])
   
   const { balance, swapError } = useContext(RobinhoodContext)
   return (
@@ -80,18 +80,19 @@ export default function Home() {
 
             <BiDotsHorizontalRounded className={styles.moreOptions} /> 
           </div>
-    
-          {[{uuid:1,price:100,coin:'BTC'},
- {uuid:2,price:200,coin:'B'},
-{uuid:3,price:300,coin:'TC'}].map(coin => {
-          let price = parseFloat(coin.price)
-          price = price.toFixed(2)
-          return <Asset key={coin.uuid} coin={coin} price={price} />
+
+
+
+
+
+
  
  
- 
-    })}
-            
+          {myCoins.map(coin => {
+   let price = parseFloat(coin.price)
+   price = price.toFixed(2)
+   return <Asset key={coin.uuid} coin={coin} price={price} />
+ })}   
 
           <div className={styles.rightMainItem}>
             <div className={styles.ItemTitle}>Lists</div>
@@ -101,7 +102,7 @@ export default function Home() {
       </div>
     </div>
   )
-}/** 
+}
 export const getStaticProps = async () => {
   const options = {
     method: 'GET',
@@ -127,7 +128,7 @@ export const getStaticProps = async () => {
   return {
     props: { coins },
   }
-}*/
+}
 
 
   
